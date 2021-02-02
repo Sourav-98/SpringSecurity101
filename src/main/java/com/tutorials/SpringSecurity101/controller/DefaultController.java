@@ -1,11 +1,14 @@
 package com.tutorials.SpringSecurity101.controller;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
-public class SpringSecurity101DefaultController {
+public class DefaultController {
 
     @GetMapping("/")
     public String home(){
@@ -32,4 +35,8 @@ public class SpringSecurity101DefaultController {
         return new String("<h2>This is Page 1 under Admin scope</h2>");
     }
 
+    @PostMapping("/test")
+    public ResponseEntity<Map<String, String>> test(@RequestBody Map<String, String> req){
+        return new ResponseEntity<>(req, HttpStatus.OK);
+    }
 }
